@@ -25,7 +25,7 @@ export default function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
       
-      const sections = ['home', 'journey', 'skills', 'projects', 'certs', 'contact'];
+      const sections = ['home', 'services', 'journey', 'skills', 'projects', 'certs', 'contact'];
       const current = sections.find(section => {
         const el = document.getElementById(section);
         if (el) {
@@ -54,12 +54,12 @@ export default function Header() {
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'py-4 rgba(7, 10, 19, 0.8) border-b border-white/5 backdrop-blur-md' : 'py-6 bg-transparent'}`}
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'py-4 border-b border-white/5 backdrop-blur-md' : 'py-6 bg-transparent'}`}
       style={{
-        borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid transparent',
-        backgroundColor: isScrolled ? 'rgba(7, 10, 19, 0.85)' : 'transparent',
-        backdropFilter: isScrolled ? 'blur(12px)' : 'none',
-        WebkitBackdropFilter: isScrolled ? 'blur(12px)' : 'none'
+        borderBottom: (isScrolled || isMobileMenuOpen) ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid transparent',
+        backgroundColor: (isScrolled || isMobileMenuOpen) ? 'rgba(7, 10, 19, 0.95)' : 'transparent',
+        backdropFilter: (isScrolled || isMobileMenuOpen) ? 'blur(12px)' : 'none',
+        WebkitBackdropFilter: (isScrolled || isMobileMenuOpen) ? 'blur(12px)' : 'none'
       }}
     >
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

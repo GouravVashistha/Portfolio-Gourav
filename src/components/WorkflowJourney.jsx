@@ -172,7 +172,7 @@ export default function WorkflowJourney() {
 
         {/* Process Controls */}
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-          <div style={{ display: 'flex', gap: '0.75rem' }}>
+          <div className="journey-btns-group">
             <button
               onClick={handleStartSimulation}
               disabled={isPlaying}
@@ -528,12 +528,26 @@ export default function WorkflowJourney() {
           filter: drop-shadow(0px 0px 8px rgba(0, 230, 118, 0.6));
         }
         
+        .journey-btns-group {
+          display: flex;
+          gap: 0.75rem;
+        }
         @media (max-width: 768px) {
           .desktop-timeline-container {
             display: none !important;
           }
           .mobile-timeline-container {
             display: block !important;
+          }
+        }
+        @media (max-width: 580px) {
+          .journey-btns-group {
+            width: 100%;
+            flex-direction: column;
+          }
+          .journey-btns-group .bpmn-btn {
+            width: 100%;
+            justify-content: center;
           }
         }
       `}</style>

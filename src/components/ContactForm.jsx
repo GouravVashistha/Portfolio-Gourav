@@ -118,7 +118,7 @@ export default function ContactForm() {
           </p>
         </div>
 
-        <div className="grid-2 contact-grid-responsive" style={{ gridTemplateColumns: '0.9fr 1.1fr' }}>
+        <div className="grid-2 contact-grid-responsive">
           {/* Left Panel: The Input Form */}
           <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--glass-border)' }}>
             {status === 'success' ? (
@@ -375,6 +375,17 @@ export default function ContactForm() {
       </div>
 
       <style>{`
+        .contact-grid-responsive {
+          display: grid;
+          grid-template-columns: 0.9fr 1.1fr;
+          gap: 2.5rem;
+        }
+        @media (max-width: 900px) {
+          .contact-grid-responsive {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+        }
         .contact-input {
           background-color: rgba(255, 255, 255, 0.02);
           border: 1px solid var(--glass-border);

@@ -295,7 +295,7 @@ export default function ProjectConsole() {
           </p>
         </div>
 
-        <div className="grid-2 project-grid-responsive" style={{ gridTemplateColumns: '0.8fr 1.2fr', alignItems: 'stretch' }}>
+        <div className="grid-2 project-grid-responsive" style={{ alignItems: 'stretch' }}>
           {/* Left Panel: Project Cards */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {Object.entries(projects).map(([key, value]) => (
@@ -488,6 +488,17 @@ export default function ProjectConsole() {
       </div>
 
       <style>{`
+        .project-grid-responsive {
+          display: grid;
+          grid-template-columns: 0.8fr 1.2fr;
+          gap: 2.5rem;
+        }
+        @media (max-width: 900px) {
+          .project-grid-responsive {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+        }
         .active-project-card {
           border-color: var(--color-green) !important;
           box-shadow: var(--glow-green-sm);

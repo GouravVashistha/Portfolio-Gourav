@@ -88,7 +88,7 @@ export default function SkillsDashboard() {
           </p>
         </div>
 
-        <div className="grid-2 skills-main-grid" style={{ gridTemplateColumns: '1.2fr 0.8fr' }}>
+        <div className="grid-2 skills-main-grid">
           {/* Left Grid: Skills Categories */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             {categories.map((category) => (
@@ -100,7 +100,7 @@ export default function SkillsDashboard() {
                   </h3>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '0.75rem' }}>
+                <div className="skills-category-grid">
                   {category.skills.map((skill) => (
                     <button
                       key={skill.id}
@@ -237,8 +237,23 @@ public class PortfolioService {
         .skill-tag.active {
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
+        .skills-main-grid {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 2.5rem;
+        }
+        .skills-category-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+          gap: 0.75rem;
+        }
         @media (max-width: 900px) {
           .skills-main-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .skills-category-grid {
             grid-template-columns: 1fr !important;
           }
         }

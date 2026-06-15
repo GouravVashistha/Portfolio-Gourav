@@ -207,23 +207,20 @@ Download generated from online portfolio at: http://localhost:5173/`;
             
             <h2 style={{ fontSize: 'clamp(1.25rem, 2.5vw, 1.8rem)', color: 'var(--color-cyan)', fontWeight: 600, marginBottom: '0.75rem', fontFamily: 'var(--font-mono)', minHeight: '2.5rem' }}>
               {typedRole}<span className="typewriter-cursor">|</span>
-            </h2>
-
-            {/* Animated Stats Row */}
-            <div className="stats-row" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
+            </h2>            {/* Animated Stats Row */}
+            <div className="stats-row">
               {[
                 { value: counters.years, suffix: '+', label: 'Months Exp', color: 'var(--color-green)' },
                 { value: counters.companies, suffix: '', label: 'Companies', color: 'var(--color-cyan)' },
                 { value: counters.projects, suffix: '+', label: 'Projects', color: 'var(--color-amber)' },
                 { value: counters.coverage, suffix: '%', label: 'Test Coverage', color: 'var(--color-purple)' }
               ].map((stat, i) => (
-                <div key={i} style={{
+                <div key={i} className="stats-card" style={{
                   background: 'rgba(255,255,255,0.03)',
                   border: `1px solid ${stat.color}30`,
                   borderRadius: '10px',
                   padding: '0.6rem 1rem',
                   textAlign: 'center',
-                  minWidth: '90px',
                   boxShadow: `0 0 12px ${stat.color}15`
                 }}>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.4rem', fontWeight: 800, color: stat.color, lineHeight: 1 }}>
@@ -239,7 +236,7 @@ Download generated from online portfolio at: http://localhost:5173/`;
             <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', maxWidth: '540px' }}>
               I design and build <strong>high-performance backend systems</strong>, scalable microservices, and enterprise-grade applications. Helping <strong>businesses & startups</strong> turn ideas into reliable, production-ready software.
             </p>
-
+ 
             {/* Floating Tech Stack Badges */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '2rem' }}>
               {[
@@ -262,8 +259,8 @@ Download generated from online portfolio at: http://localhost:5173/`;
                 </span>
               ))}
             </div>
-
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+ 
+            <div className="hero-buttons-container">
               <button onClick={handleDownloadResume} className="hero-btn primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Download size={16} /> Download Resume
               </button>
@@ -319,7 +316,7 @@ Download generated from online portfolio at: http://localhost:5173/`;
                 </div>
 
                 {/* Server Stats Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
+                <div className="server-stats-grid">
                   <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.03)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.25rem' }}>
                       <Cpu size={12} /> ENGINE LOAD
@@ -368,10 +365,10 @@ Download generated from online portfolio at: http://localhost:5173/`;
                     gap: '0.4rem'
                   }}>
                     {logs.map((log, index) => (
-                      <div key={index} style={{ display: 'flex', gap: '0.5rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        <span style={{ color: 'var(--text-muted)' }}>[{log.time}]</span>
-                        <span style={{ color: log.type === 'CORE' ? 'var(--color-cyan)' : 'var(--color-green)', fontWeight: 600 }}>{log.type}</span>
-                        <span style={{ color: 'rgba(255,255,255,0.85)' }}>{log.msg}</span>
+                      <div key={index} style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start', fontSize: '0.7rem' }}>
+                        <span style={{ color: 'var(--text-muted)', flexShrink: 0 }}>[{log.time}]</span>
+                        <span style={{ color: log.type === 'CORE' ? 'var(--color-cyan)' : 'var(--color-green)', fontWeight: 600, flexShrink: 0 }}>{log.type}</span>
+                        <span style={{ color: 'rgba(255,255,255,0.85)', whiteSpace: 'normal', wordBreak: 'break-word' }}>{log.msg}</span>
                       </div>
                     ))}
                   </div>
@@ -425,6 +422,27 @@ Download generated from online portfolio at: http://localhost:5173/`;
           background-color: rgba(255, 255, 255, 0.08);
           border-color: rgba(255,255,255,0.2);
         }
+        .stats-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          margin-bottom: 2rem;
+        }
+        .stats-card {
+          flex: 1 1 calc(25% - 0.75rem);
+          min-width: 90px;
+        }
+        .hero-buttons-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+        .server-stats-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+          margin-bottom: 1.25rem;
+        }
         @media (max-width: 768px) {
           .hero-right-container {
             margin-top: 3rem;
@@ -434,6 +452,22 @@ Download generated from online portfolio at: http://localhost:5173/`;
           }
           .stats-row {
             justify-content: center;
+          }
+        }
+        @media (max-width: 480px) {
+          .stats-card {
+            flex: 1 1 calc(50% - 0.5rem);
+          }
+          .hero-buttons-container {
+            flex-direction: column;
+            width: 100%;
+          }
+          .hero-buttons-container .hero-btn {
+            width: 100%;
+            justify-content: center;
+          }
+          .server-stats-grid {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>
